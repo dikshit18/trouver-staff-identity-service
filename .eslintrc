@@ -1,0 +1,23 @@
+  //Linting configuration
+  {
+    "extends": ["eslint:recommended", "plugin:node/recommended"],
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": 2018
+    },
+    "parser": "babel-eslint",
+    "plugins": ["node", "jest"],
+    "rules": {
+      "linebreak-style": ["error", "unix"],
+      "quotes": ["error", "single", {"allowTemplateLiterals": true}]
+    },
+    "globals": {
+      "module": "readonly"
+    },
+    "env": {
+      "browser": true,
+      "es6": true,
+      "jest/globals": true
+    }
+  }
+  
