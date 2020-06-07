@@ -1,16 +1,14 @@
 version: 0.2
 env:
   variables:
-    STAFF_IDENTITY_TABLE: admin-service
-    STAFF_SESSIONS_TABLE: admin-service-sessions
-    LAMBDA_FUNCTION_NAME: admin-service-function
-    STAFF_WS_CONNECTION_TABLE: admin-service-websocket-connections
+    STAFF_IDENTITY_TABLE: staff-identity-service
+    STAFF_SESSIONS_TABLE: staff-service-sessions
+    LAMBDA_FUNCTION_NAME: staff-identity-service-function
+    STAFF_WS_CONNECTION_TABLE: staff-service-websocket-connections
     WEB_SOCKET_ENDPOINT: https://x15lra2p45.execute-api.ap-south-1.amazonaws.com/dev
   parameter-store:
-    USERPOOL_ID: '/dev/USER_POOL_ID'
-    USERPOOL_CLIENT_ID: '/dev/USER_POOL_CLIENTID'
-    AWS_ACCESS_KEY: '/account/AWS_ACCESS_KEY_ID'
-    AWS_ACCESS_SECRET: '/account/AWS_ACCESS_KEY_SECRET'
+    USERPOOL_ID: '/dev/staff/USER_POOL_ID'
+    USERPOOL_CLIENT_ID: '/dev/staff/USER_POOL_CLIENTID'
 
 phases:
   install:
@@ -26,8 +24,6 @@ phases:
       - echo "USER_POOL_CLIENT_ID=$USERPOOL_CLIENT_ID" >> .env
       - echo "STAFF_IDENTITY_TABLE=$STAFF_IDENTITY_TABLE" >> .env
       - echo "STAFF_SESSIONS_TABLE=$STAFF_SESSIONS_TABLE" >> .env
-      - echo "AWS_ACCESS_KEY=$AWS_ACCESS_KEY" >> .env
-      - echo "AWS_ACCESS_SECRET=$AWS_ACCESS_SECRET" >> .env
       - echo "STAFF_WS_CONNECTION_TABLE=$STAFF_WS_CONNECTION_TABLE" >> .env
       - echo "WEB_SOCKET_ENDPOINT=$WEB_SOCKET_ENDPOINT" >> .env
   build:

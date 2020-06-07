@@ -14,10 +14,10 @@ const dynamoDb = (() => {
       return new Promise((res, rej) => {
         documentClient.get(params, (err, data) => {
           if (err) {
-            console.log('Error while getting Admin details... ', err);
+            console.log('Error while getting staff details... ', err);
             rej({...err, origin: 'dynamoDbGet'});
           } else {
-            console.log('Succesfully fetched Admin details... ', data);
+            console.log('Succesfully fetched staff details... ', data);
             res(data);
           }
         });
@@ -28,10 +28,10 @@ const dynamoDb = (() => {
         console.log('params are ...', params);
         documentClient.put(params, (err, data) => {
           if (err) {
-            console.log('Error while creating Admin details... ', err);
+            console.log('Error while creating staff details... ', err);
             rej(err);
           } else {
-            console.log('Succesfully creating Admin details... ', data);
+            console.log('Succesfully creating staff details... ', data);
             res(data);
           }
         });
@@ -41,10 +41,10 @@ const dynamoDb = (() => {
       return new Promise((res, rej) => {
         documentClient.update(params, (err, data) => {
           if (err) {
-            console.log('Error while updating Admin details... ', err);
+            console.log('Error while updating staff details... ', err);
             rej(err);
           } else {
-            console.log('Succesfully updated Admin details... ', data);
+            console.log('Succesfully updated staff details... ', data);
             res(data);
           }
         });

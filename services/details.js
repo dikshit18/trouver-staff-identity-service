@@ -2,7 +2,7 @@ const {dynamoDb} = require('../dbConfig/dynamoDb');
 const {errorCodes, successCodes} = require('../utils/responseCodes');
 const details = async (req, res) => {
   try {
-    const email = /*req.apiGateway.event.requestContext.authorizer.claims*/ 'dikshit.kathuria@blazeclan.com';
+    const {email} = req.apiGateway.event.requestContext.authorizer.claims;
     const params = {
       TableName: process.env.STAFF_IDENTITY_TABLE,
       Key: {

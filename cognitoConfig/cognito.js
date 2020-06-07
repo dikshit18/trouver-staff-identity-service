@@ -20,13 +20,13 @@ const cognito = (() => {
       return new Promise((res, rej) => {
         cognitoClient.signUp(params, (err, data) => {
           if (err) {
-            console.log('Error while signup admin...', err);
+            console.log('Error while signup staff member...', err);
             rej({
               ...err,
               origin: 'cognitoSignup'
             });
           } else {
-            console.log('Admin signed up...');
+            console.log('Staff signed up...');
             res(data);
           }
         });
@@ -75,7 +75,59 @@ const cognito = (() => {
         });
       });
     },
-    forgotPassword: () => {}
+    adminSetUserPassword: (Username, Password) => {
+      const params = {
+        Password /* required */,
+        UserPoolId: process.env.USER_POOL_ID /* required */,
+        Username /* required */,
+        Permanent: true
+      };
+      return new Promise((res, rej) => {
+        cognitoidentityserviceprovider.adminSetUserPassword(params, (err, data) => {
+          if (err) {
+            console.log('Error while setting user password... ', err);
+            rej();
+          } else {
+            console.log('Password has been set for user : ', data);
+            res();
+          }
+        });
+      });
+    },
+    adminConfirmSignUp: Username => {
+      const params = {
+        Username,
+        UserPoolId: process.env.USER_POOL_ID /* required */
+      };
+      return new Promise((res, rej) => {
+        cognitoidentityserviceprovider.adminConfirmSignUp(params, (err, data) => {
+          if (err) {
+            console.log('Error while confirming user signup... ', err);
+            rej();
+          } else {
+            console.log('User has been confirmed : ', data);
+            res();
+          }
+        });
+      });
+    },
+    adminDisableUser: Username => {
+      const params = {
+        Username,
+        UserPoolId: process.env.USER_POOL_ID /* required */
+      };
+      return new Promise((res, rej) => {
+        cognitoidentityserviceprovider.adminConfirmSignUp(params, (err, data) => {
+          if (err) {
+            console.log('Error while disabling user... ', err);
+            rej();
+          } else {
+            console.log('User has been disabled successfully : ', data);
+            res();
+          }
+        });
+      });
+    }
   };
 })();
 module.exports = {cognito};

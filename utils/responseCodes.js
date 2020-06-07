@@ -22,6 +22,18 @@ const successCodes = {
   logoutSuccess: {
     code: 106,
     statusCode: 200
+  },
+  tokenValid: {
+    code: 107,
+    statusCode: 200
+  },
+  setPasswordSuccess: {
+    code: 108,
+    statusCode: 200
+  },
+  disableUserSuccess: {
+    code: 109,
+    statusCode: 200
   }
 };
 
@@ -49,6 +61,22 @@ const errorCodes = {
   changePasswordFailed: {
     statusCode: 400,
     code: 156
+  },
+  tokenInvalid: {
+    statusCode: 400,
+    code: 157
+  },
+  tokenExpired: {
+    statusCode: 400,
+    code: 158
+  },
+  setPasswordFailed: {
+    statusCode: 400,
+    code: 159
+  },
+  disableUserFailed: {
+    statusCode: 400,
+    code: 160
   }
 };
 module.exports = {errorCodes, successCodes};

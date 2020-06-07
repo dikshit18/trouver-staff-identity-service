@@ -8,7 +8,6 @@ const schema = (() => {
         email: Joi.string()
           .email()
           .required(),
-        password: Joi.string().required(),
         firstName: Joi.string().required(),
         lastName: Joi.string().required()
       })
@@ -30,9 +29,27 @@ const schema = (() => {
         sessionId: JoiGuidV4.required()
       })
       .unknown(false),
-    logoutSchema: Joi.object().keys({
-      sessionId: JoiGuidV4.required()
-    })
+    logoutSchema: Joi.object()
+      .keys({
+        sessionId: JoiGuidV4.required()
+      })
+      .unknown(false),
+    validateToken: Joi.object()
+      .keys({
+        token: Joi.string().required()
+      })
+      .unknown(false),
+    confirmUser: Joi.object()
+      .keys({
+        token: Joi.string().required(),
+        password: Joi.string().required()
+      })
+      .unknown(false),
+    disableUser: Joi.object()
+      .keys({
+        identityId: JoiGuidV4.required()
+      })
+      .unknown(false)
   };
 })();
 

@@ -1,5 +1,5 @@
 {
-  "name": "admin-service",
+  "name": "staff-identity-service",
   "version": "0.1.0",
   "description": "Trouver Staff Identity Service",
   "main": "index.js",
