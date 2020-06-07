@@ -34,6 +34,10 @@ const successCodes = {
   disableUserSuccess: {
     code: 109,
     statusCode: 200
+  },
+  getAllUserSuccess: {
+    code: 110,
+    statusCode: 200
   }
 };
 
