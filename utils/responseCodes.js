@@ -38,6 +38,10 @@ const successCodes = {
   getAllUserSuccess: {
     code: 110,
     statusCode: 200
+  },
+  detailsSuccess: {
+    code: 111,
+    statusCode: 200
   }
 };
 
@@ -81,6 +85,10 @@ const errorCodes = {
   disableUserFailed: {
     statusCode: 400,
     code: 160
+  },
+  detailsFailed: {
+    statusCode: 400,
+    code: 161
   }
 };
 module.exports = {errorCodes, successCodes};

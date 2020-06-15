@@ -13,6 +13,8 @@ const logIn = async (req, res) => {
     if (await checkIfUserExists(email)) {
       const tokens = await cognito.logIn(email, password);
       const sessionId = await addSessionDetails(tokens, email);
+      delete tokens.AccessToken;
+      delete tokens.RefreshToken;
       const response = successCodes['logInSuccess'];
       return res.status(response.statusCode).send({
         statusCode: response.statusCode,

@@ -11,7 +11,7 @@ const details = async (req, res) => {
     };
     const details = await dynamoDb.get(params);
     delete details.Item.sub;
-    const response = successCodes['changePasswordSuccess'];
+    const response = successCodes['detailsSuccess'];
     return res.status(response.statusCode).send({
       statusCode: response.statusCode,
       code: response.code,
