@@ -83,7 +83,7 @@ const cognito = (() => {
         Permanent: true
       };
       return new Promise((res, rej) => {
-        cognitoidentityserviceprovider.adminSetUserPassword(params, (err, data) => {
+        cognitoClient.adminSetUserPassword(params, (err, data) => {
           if (err) {
             console.log('Error while setting user password... ', err);
             rej();
@@ -100,7 +100,7 @@ const cognito = (() => {
         UserPoolId: process.env.USER_POOL_ID /* required */
       };
       return new Promise((res, rej) => {
-        cognitoidentityserviceprovider.adminConfirmSignUp(params, (err, data) => {
+        cognitoClient.adminConfirmSignUp(params, (err, data) => {
           if (err) {
             console.log('Error while confirming user signup... ', err);
             rej();
@@ -117,7 +117,24 @@ const cognito = (() => {
         UserPoolId: process.env.USER_POOL_ID /* required */
       };
       return new Promise((res, rej) => {
-        cognitoidentityserviceprovider.adminConfirmSignUp(params, (err, data) => {
+        cognitoClient.adminDisableUser(params, (err, data) => {
+          if (err) {
+            console.log('Error while disabling user... ', err);
+            rej();
+          } else {
+            console.log('User has been disabled successfully : ', data);
+            res();
+          }
+        });
+      });
+    },
+    adminEnableUser: Username => {
+      const params = {
+        Username,
+        UserPoolId: process.env.USER_POOL_ID /* required */
+      };
+      return new Promise((res, rej) => {
+        cognitoClient.adminEnableUser(params, (err, data) => {
           if (err) {
             console.log('Error while disabling user... ', err);
             rej();

@@ -42,6 +42,10 @@ const successCodes = {
   detailsSuccess: {
     code: 111,
     statusCode: 200
+  },
+  enableUserSuccess: {
+    code: 110,
+    statusCode: 200
   }
 };
 
@@ -87,6 +91,10 @@ const errorCodes = {
     code: 160
   },
   detailsFailed: {
+    statusCode: 400,
+    code: 161
+  },
+  enableUserFailed: {
     statusCode: 400,
     code: 161
   }

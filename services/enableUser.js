@@ -3,7 +3,7 @@ const {cognito} = require('../cognitoConfig/cognito');
 const {errorCodes, successCodes} = require('../utils/responseCodes');
 const {status} = require('../utils/status');
 
-const disableUser = async (req, res) => {
+const enableUser = async (req, res) => {
   try {
     const identityId = req.params.identityId; //CongitoSub
     const params = {
@@ -23,9 +23,9 @@ const disableUser = async (req, res) => {
       });
     }
     const {email} = details.Items[0];
-    await disableUserFromDb(email);
-    await disableFromCognito(identityId);
-    const response = successCodes['disableUserSuccess'];
+    await enableUserFromDb(email);
+    await enableFromCognito(identityId);
+    const response = successCodes['enableUserSuccess'];
     return res.status(response.statusCode).send({
       statusCode: response.statusCode,
       code: response.code
@@ -49,21 +49,21 @@ const disableUser = async (req, res) => {
   }
 };
 
-const disableUserFromDb = async email => {
+const enableUserFromDb = async email => {
   const params = {
     TableName: process.env.STAFF_IDENTITY_TABLE,
     Key: {email},
     UpdateExpression: 'SET #status = :value',
     ExpressionAttributeNames: {'#status': 'status'},
     ExpressionAttributeValues: {
-      ':value': status.disabled
+      ':value': status.confirmed
     }
   };
   await dynamoDb.update(params);
   return;
 };
-const disableFromCognito = async identityId => {
-  return await cognito.adminDisableUser(identityId);
+const enableFromCognito = async identityId => {
+  return await cognito.adminEnableUser(identityId);
 };
 
-module.exports = {disableUser};
+module.exports = {enableUser};

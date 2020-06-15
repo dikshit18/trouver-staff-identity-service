@@ -2,12 +2,12 @@ require('dotenv').config();
 const {dynamoDb} = require('../dbConfig/dynamoDb');
 const {status} = require('../utils/status');
 const {errorCodes, successCodes} = require('../utils/responseCodes');
-const details = async (req, res) => {
+const fetchAllUsers = async (req, res) => {
   try {
     const params = {
-      TableName: process.env.STAFF_IDENTITY_TABLE,
-      FilterExpression: 'status = :value',
-      ExpressionAttributeValues: {':value': status.confirmed}
+      TableName: process.env.STAFF_IDENTITY_TABLE
+      // FilterExpression: 'status = :value',
+      // ExpressionAttributeValues: {':value': status.confirmed}
     };
     const details = await dynamoDb.scan(params);
     const users = details.Items.length ? details.Items : [];
@@ -36,4 +36,4 @@ const details = async (req, res) => {
   }
 };
 
-module.exports = {details};
+module.exports = {fetchAllUsers};
