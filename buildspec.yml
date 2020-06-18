@@ -35,9 +35,9 @@ phases:
       - echo zipped lambda code
       - ls -lrth
       - echo uploading lambda code
-      - aws s3 cp lambda_code.zip s3://codebuild-trouver/
+      - aws s3 cp lambda_code.zip s3://codebuild-trouver/staff-identity-service
       - echo uploaded lambda code
   post_build:
     commands:
       - echo deploying lambda function
-      - aws lambda update-function-code --function-name  $LAMBDA_FUNCTION_NAME --s3-bucket codebuild-trouver --s3-key lambda_code.zip
+      - aws lambda update-function-code --function-name  $LAMBDA_FUNCTION_NAME --s3-bucket codebuild-trouver --s3-key staff-identity-service/lambda_code.zip
